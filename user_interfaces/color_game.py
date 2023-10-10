@@ -2,7 +2,7 @@ from tkinter import *
 
 
 root = Tk()
-colors = ["blue", "red", "green", "purple", "orange"]
+colors = ["blue", "red", "green", "purple", "orange", "yellow"]
 current_color_index = 0
 
 username = Entry(root, borderwidth=3)
