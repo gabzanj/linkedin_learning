@@ -1,6 +1,6 @@
 import pandas as pd
 
-path_csv = 'files/mtcars.csv'
+path_csv = '../files/mtcars.csv'
 df_cars = pd.read_csv(path_csv)
 df_cars.rename(columns={'Unnamed: 0': 'name'}, inplace=True)
 
