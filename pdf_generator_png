@@ -1,0 +1,46 @@
+from reportlab.pdfgen import canvas
+from PIL import Image
+
+def create_pdf(images, output_filename):
+    c = canvas.Canvas(output_filename)
+
+    # Define o tamanho da página como A4
+    width, height = 595.275590551181, 841.8897637795275
+
+    # Altura de cada imagem na página
+    image_height = height / len(images)
+
+    for i, image_path in enumerate(images):
+        # Calcula a posição da imagem na página
+        x = 0
+        y = height - (i + 1) * image_height
+
+        # Abre a imagem usando Pillow
+        img = Image.open(image_path)
+
+        # Redimensiona a imagem para a altura desejada
+        img.thumbnail((width, image_height))
+
+        # Adiciona a imagem ao PDF
+        c.drawInlineImage(img, x, y, width, image_height)
+
+    # Salva o arquivo PDF
+    c.save()
+
+if __name__ == "__main__":
+    # Lista de caminhos das imagens PNG
+    image_paths = [r"D:\PycharmProjects\grapichs\batman-simbolo-1.png",
+                   r"D:\PycharmProjects\grapichs\batman-simbolo-1.png",
+                   r"D:\PycharmProjects\grapichs\batman-simbolo-1.png",
+                   r"D:\PycharmProjects\grapichs\batman-simbolo-1.png",
+                   r"D:\PycharmProjects\grapichs\batman-simbolo-1.png",
+                   r"D:\PycharmProjects\grapichs\batman-simbolo-1.png",
+                   r"D:\PycharmProjects\grapichs\batman-simbolo-1.png"]
+
+    # Nome do arquivo PDF de saída
+    output_filename = "output.pdf"
+
+    # Cria o arquivo PDF
+    create_pdf(image_paths, output_filename)
+
+    print(f"O arquivo PDF '{output_filename}' foi criado com sucesso.")
